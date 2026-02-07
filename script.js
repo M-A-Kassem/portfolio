@@ -150,13 +150,16 @@ function typeWriter(element, text, speed = 100) {
 //     typeWriter(heroTitle, originalText, 50);
 // }
 
-// ===== Parallax Effect for Hero Section =====
+// ===== Subtle hero fade on scroll (no parallax transform – avoids overlap with content below) =====
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
-    if (hero && scrolled < window.innerHeight) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+    if (!hero) return;
+    hero.style.transform = '';
+    if (scrolled < window.innerHeight) {
+        hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.25;
+    } else {
+        hero.style.opacity = '1';
     }
 });
 
